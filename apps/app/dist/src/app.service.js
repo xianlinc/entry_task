@@ -15,8 +15,8 @@ let AppService = class AppService {
     findToken(tokenAddress) {
         console.log(tokenAddress);
         const mock = {
+            name: 'TEST',
             symbol: 'TEST',
-            ticker: 'TEST',
             totalSupply: 'TEST',
         };
         return mock;

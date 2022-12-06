@@ -9,8 +9,8 @@ export class AppService {
   findToken(tokenAddress: string): PostTokenAddressResponseDTO {
     console.log(tokenAddress);
     const mock = {
+      name: 'TEST',
       symbol: 'TEST',
-      ticker: 'TEST',
       totalSupply: 'TEST',
     };
     return mock;

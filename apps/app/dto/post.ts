@@ -3,7 +3,7 @@ export class PostTokenAddressDTO {
 }
 
 export class PostTokenAddressResponseDTO {
+  name: string;
   symbol: string;
-  ticker: string;
   totalSupply: string;
 }
