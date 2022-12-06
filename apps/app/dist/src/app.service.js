@@ -12,6 +12,15 @@ let AppService = class AppService {
     getHello() {
         return 'Hello World!';
     }
+    findToken(tokenAddress) {
+        console.log(tokenAddress);
+        const mock = {
+            symbol: 'TEST',
+            ticker: 'TEST',
+            totalSupply: 'TEST',
+        };
+        return mock;
+    }
 };
 AppService = __decorate([
     (0, common_1.Injectable)()

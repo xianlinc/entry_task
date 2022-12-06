@@ -1,5 +1,6 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
 import { AppService } from './app.service';
+import { PostTokenAddressDTO } from 'dto/post';
 
 @Controller()
 export class AppController {
@@ -11,7 +12,8 @@ export class AppController {
   }
 
   @Post()
-  async findToken(@Body() tokenAddress: string): Promise<string[]> {
-    return this.appService.findToken(tokenAddress);
+  async findToken(@Body() body: PostTokenAddressDTO): Promise<string[]> {
+    console.log(body.tokenAddress);
+    return this.appService.findToken(body.tokenAddress);
   }
 }
