@@ -26,40 +26,40 @@ function Search() {
     totalSupply: "",
   });
   // display search results
-  const [_, { Form }] = createRouteAction(async (formData: FormData) => {
-    await new Promise((resolve, reject) => setTimeout(resolve, 1000));
-    //   const username = formData.get("username");
-    //   if (username === "admin") {
-    //     return redirect("/admin");
-    //   } else {
-    //     throw new Error("Invalid username");
-    //   }
-    //   return redirect("/home");
-    // });
-    // send data to server and get results
-    console.log(formData.get("tokenAddress"));
-    // send formData as a post request to server at http://localhost:3030
+  const [tokenAdress, setTokenAddress] = createSignal<string>("");
+  const [_, getInfo] = createRouteAction(async () => {
     const response = await fetch("http://localhost:3030", {
       method: "POST",
       mode: "cors",
-      body: formData,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ tokenAddress: tokenAdress() }),
     });
     const data: TokenInfo = await response.json();
-    console.log(data);
     setTokenInfo(data);
   });
 
   return (
     <div class="flex flex-col">
-      <Form>
+      <form>
         <label for="tokenAddress">Search: </label>
         <input
           type="text"
           name="tokenAddress"
           placeholder="Enter address here"
+          value={tokenAdress()}
+          onChange={(e) => setTokenAddress(e.currentTarget.value)}
         />
-        <input type="submit" value="ok" />
-      </Form>
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            getInfo();
+          }}
+        >
+          ok
+        </button>
+      </form>
       <div class="flex flex-col">
         <p>Token Name: {tokenInfo().name}</p>
         <p>Token Symbol: {tokenInfo().symbol}</p>

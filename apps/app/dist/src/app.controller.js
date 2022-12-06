@@ -24,7 +24,7 @@ let AppController = class AppController {
         return this.appService.getHello();
     }
     async findToken(body) {
-        console.log(body.tokenAddress);
+        console.log(body);
         return this.appService.findToken(body.tokenAddress);
     }
 };

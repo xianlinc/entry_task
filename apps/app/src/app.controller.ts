@@ -15,7 +15,7 @@ export class AppController {
   async findToken(
     @Body() body: PostTokenAddressDTO,
   ): Promise<PostTokenAddressResponseDTO> {
-    console.log(body.tokenAddress);
+    console.log(body);
     return this.appService.findToken(body.tokenAddress);
   }
 }
