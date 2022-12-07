@@ -7,7 +7,6 @@ type TokenInfo = {
   totalSupply: string;
 };
 
-//TODO: Add error handling to requests
 export default function Search() {
   const [tokenInfo, setTokenInfo] = createSignal<TokenInfo>({
     name: "",
@@ -15,8 +14,9 @@ export default function Search() {
     totalSupply: "",
   });
 
-  // display search results
   const [tokenAdress, setTokenAddress] = createSignal<string>("");
+
+  // display search results
   const [gettingInfo, getInfo] = createRouteAction(async () => {
     const response = await fetch("http://localhost:3030", {
       method: "POST",
@@ -37,7 +37,7 @@ export default function Search() {
   };
 
   return (
-    <div class="flex flex-col max-w-2xl mx-auto gap-2">
+    <div class="flex flex-col max-w-xl mx-auto gap-2">
       <form class="flex">
         <input
           type="text"
@@ -45,12 +45,12 @@ export default function Search() {
           placeholder="Enter Token address"
           value={tokenAdress()}
           onChange={(e) => setTokenAddress(e.currentTarget.value)}
-          class="w-full p-4 mr-2 border rounded"
+          class="w-full p-2 mr-2 border rounded"
         />
         <button
           disabled={gettingInfo.pending}
           onClick={(e) => handleSubmission(e)}
-          class="p-4 bg-blue-500 text-white rounded hover:bg-blue-400"
+          class="px-4 bg-blue-500 text-white rounded hover:bg-blue-400"
         >
           SEARCH
         </button>
