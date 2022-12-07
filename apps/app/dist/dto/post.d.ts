@@ -1,8 +1,8 @@
 export declare class PostTokenAddressDTO {
-    tokenAddress: string;
+  tokenAddress: string;
 }
 export declare class PostTokenAddressResponseDTO {
-    name: string;
-    symbol: string;
-    totalSupply: string;
+  name: string;
+  symbol: string;
+  totalSupply: string;
 }

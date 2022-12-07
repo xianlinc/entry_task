@@ -18,28 +18,20 @@ let AppService = class AppService {
         this.httpService = httpService;
     }
     getHello() {
-        return 'Hello World!';
+        return "Server is up!";
     }
     async findToken(tokenAddress) {
-        const mock = {
-            name: tokenAddress,
-            symbol: 'TEST',
-            totalSupply: 'TEST',
-        };
         const query = { token_info: {} };
         const queryEncoded = btoa(JSON.stringify(query));
         const reqUrl = `https://phoenix-lcd.terra.dev/cosmwasm/wasm/v1/contract/${tokenAddress}/smart/${queryEncoded}`;
         const data = this.httpService.get(reqUrl).pipe((0, rxjs_1.map)((res) => {
-            console.log(res.data.data);
             const transformed = {
                 name: res.data.data.name,
                 symbol: res.data.data.symbol,
                 totalSupply: res.data.data.total_supply,
             };
-            console.log(transformed);
             return transformed;
         }));
-        console.log(data);
         return await (0, rxjs_1.lastValueFrom)(data);
     }
 };

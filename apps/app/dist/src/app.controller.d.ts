@@ -1,8 +1,8 @@
-import { AppService } from './app.service';
-import { PostTokenAddressDTO, PostTokenAddressResponseDTO } from 'dto/post';
+import { AppService } from "./app.service";
+import { PostTokenAddressDTO } from "dto/post";
 export declare class AppController {
     private readonly appService;
     constructor(appService: AppService);
     getHello(): string;
-    findToken(body: PostTokenAddressDTO): Promise<PostTokenAddressResponseDTO>;
+    findToken(body: PostTokenAddressDTO): Promise<import("dto/post").PostTokenAddressResponseDTO>;
 }

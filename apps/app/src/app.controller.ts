@@ -1,7 +1,6 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
-import { AppService } from './app.service';
-import { PostTokenAddressDTO, PostTokenAddressResponseDTO } from 'dto/post';
-import { firstValueFrom, lastValueFrom, Observable } from 'rxjs';
+import { Body, Controller, Get, Post } from "@nestjs/common";
+import { AppService } from "./app.service";
+import { PostTokenAddressDTO } from "dto/post";
 
 @Controller()
 export class AppController {

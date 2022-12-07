@@ -1,10 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PostTokenAddressResponseDTO = exports.PostTokenAddressDTO = void 0;
-class PostTokenAddressDTO {
-}
+class PostTokenAddressDTO {}
 exports.PostTokenAddressDTO = PostTokenAddressDTO;
-class PostTokenAddressResponseDTO {
-}
+class PostTokenAddressResponseDTO {}
 exports.PostTokenAddressResponseDTO = PostTokenAddressResponseDTO;
 //# sourceMappingURL=post.js.map
