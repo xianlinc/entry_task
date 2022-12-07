@@ -3,7 +3,7 @@ import { A, createRouteAction } from "solid-start";
 export default function Home() {
   return (
     <main class="text-center mx-auto text-gray-700 p-4">
-      <h1 class="text-4xl">Search here</h1>
+      <h1 class="text-2xl m-4">CW20 Token Info Search</h1>
       <Search />
     </main>
   );
@@ -41,30 +41,37 @@ function Search() {
   });
 
   return (
-    <div class="flex flex-col">
-      <form>
-        <label for="tokenAddress">Search: </label>
+    <div class="flex flex-col border max-w-lg mx-auto">
+      <form class="flex border">
         <input
           type="text"
           name="tokenAddress"
-          placeholder="Enter address here"
+          placeholder="Enter Token address"
           value={tokenAdress()}
           onChange={(e) => setTokenAddress(e.currentTarget.value)}
+          class="w-full p-4"
         />
         <button
           onClick={(e) => {
             e.preventDefault();
             getInfo();
           }}
+          class="p-4"
         >
-          ok
+          SEARCH
         </button>
       </form>
-      <div class="flex flex-col">
-        <p>Token Name: {tokenInfo().name}</p>
-        <p>Token Symbol: {tokenInfo().symbol}</p>
-        <p>Total Supply: {tokenInfo().totalSupply}</p>
-      </div>
+      <TokenInfoCard tokenInfo={tokenInfo()} />
     </div>
   );
 }
+
+const TokenInfoCard = ({ tokenInfo }: { tokenInfo: TokenInfo }) => {
+  return (
+    <div class="flex flex-col text-left p-4 gap-2">
+      <p>Token Name: {tokenInfo.name}</p>
+      <p>Token Symbol: {tokenInfo.symbol}</p>
+      <p>Total Supply: {tokenInfo.totalSupply}</p>
+    </div>
+  );
+};
