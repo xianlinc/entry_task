@@ -1,4 +1,4 @@
-import { createSignal, Show } from "solid-js";
+import { Accessor, createSignal, Show } from "solid-js";
 import { createRouteAction } from "solid-start";
 
 type TokenInfo = {
@@ -37,32 +37,47 @@ export default function Search() {
   };
 
   return (
-    <div class="flex flex-col border max-w-2xl mx-auto">
-      <form class="flex border">
+    <div class="flex flex-col max-w-2xl mx-auto gap-2">
+      <form class="flex">
         <input
           type="text"
           name="tokenAddress"
           placeholder="Enter Token address"
           value={tokenAdress()}
           onChange={(e) => setTokenAddress(e.currentTarget.value)}
-          class="w-full p-4"
+          class="w-full p-4 mr-2 border rounded"
         />
         <button
           disabled={gettingInfo.pending}
           onClick={(e) => handleSubmission(e)}
-          class="p-4"
+          class="p-4 bg-blue-500 text-white rounded hover:bg-blue-400"
         >
           SEARCH
         </button>
       </form>
-      <div class="flex flex-col text-left p-4 gap-2">
-        <p>Token Name: {tokenInfo().name}</p>
-        <p>Token Symbol: {tokenInfo().symbol}</p>
-        <p>Total Supply: {tokenInfo().totalSupply}</p>
-      </div>
+      <Results tokenInfo={tokenInfo} />
       <Show when={gettingInfo.error}>
-        <div class="text-red-500 pb-4">{gettingInfo.error.message}</div>
+        <div class="text-red-500">{gettingInfo.error.message}</div>
       </Show>
+    </div>
+  );
+}
+
+function Results({ tokenInfo }: { tokenInfo: Accessor<TokenInfo> }) {
+  return (
+    <div class="flex flex-col text-left p-4 gap-2 border rounded">
+      <p>
+        <span class="font-bold">Token Name: </span>
+        {tokenInfo().name}
+      </p>
+      <p>
+        <span class="font-bold">Token Symbol: </span>
+        {tokenInfo().symbol}
+      </p>
+      <p>
+        <span class="font-bold">Total Supply: </span>
+        {tokenInfo().totalSupply}
+      </p>
     </div>
   );
 }
