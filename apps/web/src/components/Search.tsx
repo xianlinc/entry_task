@@ -1,4 +1,4 @@
-import { createSignal } from "solid-js";
+import { createSignal, Show } from "solid-js";
 import { createRouteAction } from "solid-start";
 
 type TokenInfo = {
@@ -17,7 +17,7 @@ export default function Search() {
 
   // display search results
   const [tokenAdress, setTokenAddress] = createSignal<string>("");
-  const [_, getInfo] = createRouteAction(async () => {
+  const [gettingInfo, getInfo] = createRouteAction(async () => {
     const response = await fetch("http://localhost:3030", {
       method: "POST",
       mode: "cors",
@@ -26,6 +26,7 @@ export default function Search() {
       },
       body: JSON.stringify({ tokenAddress: tokenAdress() }),
     });
+    if (!response.ok) throw new Error("Failed to fetch token info");
     const data: TokenInfo = await response.json();
     setTokenInfo(data);
   });
@@ -36,7 +37,7 @@ export default function Search() {
   };
 
   return (
-    <div class="flex flex-col border max-w-lg mx-auto">
+    <div class="flex flex-col border max-w-2xl mx-auto">
       <form class="flex border">
         <input
           type="text"
@@ -46,7 +47,11 @@ export default function Search() {
           onChange={(e) => setTokenAddress(e.currentTarget.value)}
           class="w-full p-4"
         />
-        <button onClick={(e) => handleSubmission(e)} class="p-4">
+        <button
+          disabled={gettingInfo.pending}
+          onClick={(e) => handleSubmission(e)}
+          class="p-4"
+        >
           SEARCH
         </button>
       </form>
@@ -55,6 +60,9 @@ export default function Search() {
         <p>Token Symbol: {tokenInfo().symbol}</p>
         <p>Total Supply: {tokenInfo().totalSupply}</p>
       </div>
+      <Show when={gettingInfo.error}>
+        <div class="text-red-500 pb-4">{gettingInfo.error.message}</div>
+      </Show>
     </div>
   );
 }
