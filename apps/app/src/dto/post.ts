@@ -1,8 +1,8 @@
-export class PostTokenAddressDTO {
+export type PostTokenAddressDTO = {
   tokenAddress: string;
 }
 
-export class PostTokenAddressResponseDTO {
+export type PostTokenAddressResponseDTO = {
   name: string;
   symbol: string;
   totalSupply: string;

@@ -1,6 +1,6 @@
 import { HttpService } from "@nestjs/axios";
 import { Injectable } from "@nestjs/common";
-import { PostTokenAddressResponseDTO } from "dto/post";
+import { PostTokenAddressResponseDTO } from "src/dto/post";
 import { lastValueFrom, map } from "rxjs";
 
 @Injectable()

@@ -26,7 +26,11 @@ export default function Search() {
       },
       body: JSON.stringify({ tokenAddress: tokenAdress() }),
     });
-    if (!response.ok) throw new Error("Failed to fetch token info");
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch token info");
+    }
+
     const data: TokenInfo = await response.json();
     setTokenInfo(data);
   });
