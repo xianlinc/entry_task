@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Post } from "@nestjs/common";
 import { AppService } from "./app.service";
-import { PostTokenAddressDTO } from "dto/post";
+import { PostTokenAddressDTO } from "src/dto/post";
 
 @Controller()
 export class AppController {
